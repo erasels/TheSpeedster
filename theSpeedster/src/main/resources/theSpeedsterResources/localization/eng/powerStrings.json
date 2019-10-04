@@ -1,0 +1,57 @@
+{
+  "theSpeedster:Ignite": {
+    "NAME": "Ignite",
+    "DESCRIPTIONS": [
+      "At the end of its turn, takes #b",
+      " damage, then reduce #yIgnite by #bhalf its amount (rounded up).",
+      "At the end of the monsters' turn, take #b"
+    ]
+  },
+  "theSpeedster:RecklessAttack": {
+    "NAME": "Reckless Attack",
+    "DESCRIPTIONS": [
+      "The next card you play costs #b0 [REMOVE_SPACE]. Lose HP equal to #b",
+      " times its original energy cost instead."
+    ]
+  },
+  "theSpeedster:Mirage": {
+    "NAME": "Bearing Flames",
+    "DESCRIPTIONS": [
+      "Until the end of your #b",
+      " next turns,",
+      " [REMOVE_SPACE] turn,",
+      " if you would lose HP from a card, ",
+      "a random #yFlame",
+      " loses it instead."
+    ]
+  },
+  "theSpeedster:Updraft": {
+    "NAME": "Updraft",
+    "DESCRIPTIONS": [
+      "When you would die, heal HP equal to #b",
+      " times the amount of cards with a HP cost in your deck."
+    ]
+  },
+  "theSpeedster:LoseHPDrawCard": {
+    "NAME": "HP Loss Card Draw",
+    "DESCRIPTIONS": [
+      "Whenever you lose HP, draw #b",
+      " card.",
+      " cards."
+    ]
+  },
+  "theSpeedster:BurningMadness": {
+    "NAME": "Burning Madness",
+    "DESCRIPTIONS": [
+      "At the start of your turn, lose #b",
+      " HP and gain #b",
+      " #yStrength [REMOVE_SPACE]."
+    ]
+  },
+  "theSpeedster:Cursed": {
+    "NAME": "Cursed",
+    "DESCRIPTIONS": [
+      "On death, applies its debuffs to all other monsters."
+    ]
+  }
+}

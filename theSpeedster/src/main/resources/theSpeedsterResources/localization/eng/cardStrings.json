@@ -1,0 +1,153 @@
+{
+  "theSpeedster:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "theSpeedster:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "theSpeedster:FlameSling": {
+    "NAME": "Flame Sling",
+    "DESCRIPTION": "Apply !M! thespeedster:Ignite and 1 Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Apply !M! thespeedster:Ignite and 1 Vulnerable. NL thespeedster:Burst: Draw 2 cards."
+  },
+  "theSpeedster:Scorch": {
+    "NAME": "Scorch",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL thespeedster:Burst: Deal !D! damage. Gain [E].",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL thespeedster:Burst: Deal !D! damage."
+  },
+  "theSpeedster:Blitz": {
+    "NAME": "Blitz",
+    "DESCRIPTION": "Deal !D! damage twice.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL Draw !M! card."
+  },
+  "theSpeedster:SpontaneousCombustion": {
+    "NAME": "Spontaneous Combustion",
+    "DESCRIPTION": "Autoplay. NL Deal !D! damage to ALL enemies !M! times."
+  },
+  "theSpeedster:Expiation": {
+    "NAME": "Expiation",
+    "DESCRIPTION": "Gain !B! Block and heal !M! HP for each Attack played this turn."
+  },
+  "theSpeedster:RecklessDive": {
+    "NAME": "Reckless Dive",
+    "DESCRIPTION": "Put the next !M! Attacks of your draw pile into your hand and lose HP equal to their combined cost."
+  },
+  "theSpeedster:Flare": {
+    "NAME": "Flare",
+    "DESCRIPTION": "Deal damage equal to all HP lost this combat to ALL enemies. NL (Currently: !theSpeedster:M2!)",
+    "UPGRADE_DESCRIPTION": "Deal damage equal to all HP lost this combat + !D! to ALL enemies. NL (Currently: !theSpeedster:M2!)"
+  },
+  "theSpeedster:RecklessAttack": {
+    "NAME": "Reckless Attack",
+    "DESCRIPTION": "The next card you play costs 0. Lose HP equal to !M! times its original energy cost instead."
+  },
+  "theSpeedster:ImperishableShooting": {
+    "NAME": "Imperishable Shooting",
+    "DESCRIPTION": "Deal !D! damage to a random enemy !M! times. Increase this card's hit count by !theSpeedster:M2! this combat.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Deal !D! damage to a random enemy !M! times. Increase this card's hit count by !theSpeedster:M2! this combat."
+  },
+  "theSpeedster:Mirage": {
+    "NAME": "Mirage",
+    "DESCRIPTION": "Gain !B! Block. NL Summon a thespeedster:Full_Flame.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Summon a thespeedster:Full_Flame. NL thespeedster:Burst: Until the end of your turn, transfer card HP loss to a random thespeedster:Flame."
+  },
+  "theSpeedster:Warmup": {
+    "NAME": "Warm Up",
+    "DESCRIPTION": "Draw !M! cards."
+  },
+  "theSpeedster:Kindle": {
+    "NAME": "Kindle",
+    "DESCRIPTION": "Gain !M! Strength. NL thespeedster:Burst: Heal !theSpeedster:M2! HP"
+  },
+  "theSpeedster:Channel": {
+    "NAME": "Channel",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL thespeedster:Burst: Heal !M! HP for each enemy hit."
+  },
+  "theSpeedster:RetreatingStrike": {
+    "NAME": "Retreating Strike",
+    "DESCRIPTION": "Deal !D! damage. NL thespeedster:Burst: Gain Block equal to the damage dealt."
+  },
+  "theSpeedster:Updraft": {
+    "NAME": "Updraft",
+    "DESCRIPTION": "When you would die, heal HP equal to !M! times the amount of cards with a HP cost in your deck."
+  },
+  "theSpeedster:BlisteringRush": {
+    "NAME": "Blistering Rush",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL thespeedster:Burst: Apply !M! thespeedster:Ignite to ALL enemies."
+  },
+  "theSpeedster:FireTailLash": {
+    "NAME": "Fire Tail Lash",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply thespeedster:Ignite equal to the damage dealt. NL Apply !M! Vulnerable."
+  },
+  "theSpeedster:FalseIgnition": {
+    "NAME": "False Ignition",
+    "DESCRIPTION": "Exhaust a random card in your hand. NL Gain !M! Temporary Strength and [E].",
+    "UPGRADE_DESCRIPTION": "Exhaust a card in your hand. NL Gain !M! Temporary Strength and [E]."
+  },
+  "theSpeedster:ImmortalFlame": {
+    "NAME": "Immortal Flame",
+    "DESCRIPTION": "Whenever this card would leave your hand, return it to your hand and deal !D! damage to ALL enemies."
+  },
+  "theSpeedster:RetravelingOldRoads": {
+    "NAME": "Peregrinate",
+    "DESCRIPTION": "Scry !M!. Increase the amount of scryed cards by !theSpeedster:M2! this combat. Shuffle this card into your draw pile."
+  },
+  "theSpeedster:Caprice": {
+    "NAME": "Caprice",
+    "DESCRIPTION": "Ethereal. NL Whenever you lose HP, draw !M! cards."
+  },
+  "theSpeedster:Wandering": {
+    "NAME": "Wandering",
+    "DESCRIPTION": "Scry !M!. NL thespeedster:Burst: Next turn, draw cards equal to the amount of discarded cards."
+  },
+  "theSpeedster:Preordained": {
+    "NAME": "Preordained",
+    "DESCRIPTION": "Scry !M!. NL Deal !D! damage for each card you discard."
+  },
+  "theSpeedster:Venting": {
+    "NAME": "Venting",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! cards, heal HP equal to their energy cost."
+  },
+  "theSpeedster:RecklessSacrifice": {
+    "NAME": "Reckless Sacrifice",
+    "DESCRIPTION": "Repeats X times and doubles the effects each repeat. NL Lose !M! HP and Deal !D! damage. NL (HP: !theSpeedster:M2!, Damage: !theSpeedster:SN!)"
+  },
+  "theSpeedster:Transpose": {
+    "NAME": "Transpose",
+    "DESCRIPTION": "Switch your draw and discard piles. NL You cannot draw cards this turn. NL thespeedster:Burst: Scry !M!.",
+    "UPGRADE_DESCRIPTION": "Switch your draw and discard piles. NL Scry !M!."
+  },
+  "theSpeedster:SongAndDance": {
+    "NAME": "Song and Dance",
+    "DESCRIPTION": "Gain !M! temporary Strength. NL thespeedster:Burst: Heal HP equal to your Strength.",
+    "UPGRADE_DESCRIPTION": "Gain !M! temporary Strength and heal HP equal to your Strength. NL thespeedster:Burst: Next turn, gain !B! Block."
+  },
+  "theSpeedster:IndiscriminateIgnition": {
+    "NAME": "Indiscriminate Ignition",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies for each card in your hand. NL End your turn."
+  },
+  "theSpeedster:BurningMadness": {
+    "NAME": "Burning Madness",
+    "DESCRIPTION": "At the start of your turn, lose !M! HP and gain !theSpeedster:M2! Strength.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Retain. NL At the start of your turn, lose !M! HP and gain !theSpeedster:M2! Strength."
+  },
+  "theSpeedster:Foreordain": {
+    "NAME": "Foreordain",
+    "DESCRIPTION": "Scry !M!. NL Add a copy of each discarded card to you hand."
+  },
+  "theSpeedster:CursedSign": {
+    "NAME": "Cursed Sign",
+    "DESCRIPTION": "Apply !theSpeedster:M2! thespeedster:Ignite and !M! Vulnerable. NL When the enemy dies, it applies all of its debuffs to ALL enemies."
+  },
+  "theSpeedster:Caution": {
+    "NAME": "Caution",
+    "DESCRIPTION": "Scry !M!. NL Gain !B! Block for each card you discard."
+  },
+  "theSpeedster:FallingPhoenix": {
+    "NAME": "Falling Phoenix",
+    "DESCRIPTION": "Costs 1 less [E] for each thespeedster:Burst effect triggered this turn. NL Deal !D! damage !M! times."
+  }
+}
