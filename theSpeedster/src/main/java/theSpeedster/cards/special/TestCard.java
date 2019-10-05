@@ -3,12 +3,11 @@ package theSpeedster.cards.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import theSpeedster.TheSpeedster;
 import theSpeedster.cards.abstracts.SpeedsterCard;
 import theSpeedster.util.CardInfo;
 
 import static theSpeedster.TheSpeedster.makeID;
-import static theSpeedster.util.UC.*;
+import static theSpeedster.util.UC.p;
 
 public class TestCard extends SpeedsterCard {
     private final static CardInfo cardInfo = new CardInfo(
@@ -28,6 +27,5 @@ public class TestCard extends SpeedsterCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.overlayMenu.showBlackScreen(0.5f);
-        TheSpeedster.pogModo = true;
     }
 }
