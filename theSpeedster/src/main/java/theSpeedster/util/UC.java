@@ -1,6 +1,8 @@
 package theSpeedster.util;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -11,15 +13,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import theSpeedster.actions.utility.DamageAllAction;
 import theSpeedster.patches.combat.BurstMechanics;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class UC {
@@ -27,6 +31,8 @@ public class UC {
     public static AbstractPlayer p() {
         return AbstractDungeon.player;
     }
+    private static DecimalFormat twoDecFormat = new DecimalFormat("#0.00");
+    public static GlyphLayout layout = new GlyphLayout();
 
     //Checks
     public static boolean checkBurst() {
@@ -116,6 +122,20 @@ public class UC {
     }
 
     //Getters
+    public static AbstractGameAction.AttackEffect getSpeedyAttackEffect() {
+        int effect = MathUtils.random(0, 4);
+        switch(effect) {
+            case 0:
+                return AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
+            case 1:
+                return AbstractGameAction.AttackEffect.SLASH_VERTICAL;
+            case 2:
+                return AbstractGameAction.AttackEffect.BLUNT_LIGHT;
+            default:
+                return AbstractGameAction.AttackEffect.SLASH_DIAGONAL;
+        }
+    }
+
     public static Color getRandomFireColor() {
         int i = MathUtils.random(3);
         switch (i) {
@@ -143,6 +163,13 @@ public class UC {
         return BurstMechanics.PlayerBurstField.turnBurstAmount.get(p());
     }
 
+    public static String get2DecString(float num) {
+        if(num <0) {
+            num = 0;
+        }
+        return twoDecFormat.format(AlchHelper.round(num, 2));
+    }
+
     //Setters
     public static void incrementTurnBurstAmount() {
         BurstMechanics.PlayerBurstField.turnBurstAmount.set(p(), getTurnBurstAmount() + 1);
@@ -150,5 +177,17 @@ public class UC {
 
     public static <T> boolean True(T t) {
         return true;
+    }
+
+    //Display
+    public static void displayTimer(SpriteBatch sb, String msg, float y, Color color) {
+        String tmp = msg.replaceAll("\\d", "0");
+        layout.setText(FontHelper.SCP_cardEnergyFont, tmp);
+        float baseBox = layout.width;
+        layout.setText(FontHelper.SCP_cardEnergyFont, msg);
+        sb.setColor(Settings.TWO_THIRDS_TRANSPARENT_BLACK_COLOR);
+        //sb.draw(ImageMaster.WHITE_SQUARE_IMG, Settings.WIDTH / 2.0F - baseBox / 2.0F - 12.0F * Settings.scale, y - 24.0F * Settings.scale, baseBox + 24.0F * Settings.scale, layout.height * Settings.scale);
+        FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, msg, (Settings.WIDTH / 2.0F) - baseBox / 2.0F, y + layout.height / 2.0F, color);
+        //FontHelper.renderFontCentered(sb, FontHelper.SCP_cardEnergyFont, msg, Settings.WIDTH / 2.0F, y, color);
     }
 }
