@@ -1,5 +1,6 @@
 package theSpeedster.util;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -168,6 +169,10 @@ public class UC {
             num = 0;
         }
         return twoDecFormat.format(AlchHelper.round(num, 2));
+    }
+
+    public static float gt() {
+        return Gdx.graphics.getRawDeltaTime();
     }
 
     //Setters
