@@ -7,34 +7,24 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.WindyParticleEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import theSpeedster.cards.variables.MagicNumber2;
 import theSpeedster.cards.variables.ShowNumber;
 import theSpeedster.characters.SpeedsterCharacter;
+import theSpeedster.mechanics.speed.AbstractSpeedTime;
 import theSpeedster.util.TextureLoader;
-import theSpeedster.util.UC;
 
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Properties;
 
 @SpireInitializer
@@ -53,6 +43,8 @@ PostUpdateSubscriber{
     public static Properties theSpeedsterSettings = new Properties();
     public static final String ENABLE_PLACEHOLDER_SETTINGS = "enablePlaceholder";
     public static boolean enablePlaceholder = true;
+
+    public static AbstractSpeedTime speedScreen;
 
     private static final String MODNAME = "The Speedster";
     private static final String AUTHOR = "erasels";
@@ -137,6 +129,13 @@ PostUpdateSubscriber{
         settingsPanel.addUIElement(enableNormalsButton);
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+    }
+
+    @Override
+    public void receivePostUpdate() {
+        if(speedScreen != null && speedScreen.isDone) {
+            speedScreen = null;
+        }
     }
 
     @Override
@@ -236,72 +235,5 @@ PostUpdateSubscriber{
 
     public static String getModID() { // NO
         return modID;
-    }
-
-    public static boolean pogModo = false, idk;
-    public static float sx, sy, tx, ty;
-    @Override
-    public void receivePostUpdate() {
-        if(pogModo) {
-            if(InputHelper.justClickedLeft) {
-                tx = InputHelper.mX;
-                ty = InputHelper.mY;
-                idk = true;
-            } else {
-                idk = false;
-            }
-            AbstractDungeon.effectsQueue.add(new WindyParticleEffect());
-        }
-        if(idk && CardCrawlGame.isInARun()) {
-            AbstractCreature m = getClosestMonster(tx, ty);
-            if(m != null)
-            UC.doDmg(m, 5, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        }
-    }
-
-    public static AbstractMonster getClosestMonster(float x, float y)
-    {
-        AbstractMonster closest = null;
-        if (AbstractDungeon.getCurrMapNode() == null || AbstractDungeon.getCurrRoom() == null || AbstractDungeon.getMonsters() == null)
-        {
-            return closest;
-        }
-        ArrayList<AbstractMonster> monsters = new ArrayList<>(AbstractDungeon.getMonsters().monsters);
-        monsters.removeIf(AbstractCreature::isDeadOrEscaped);
-
-        float minDist = -1;
-        for (AbstractMonster m : monsters)
-        {
-            if (closest == null)
-            {
-                closest = m;
-                minDist = dist(x, m.hb.cX, y, m.hb.cY);
-            }
-            else if (Math.abs(m.hb.cX - x) < minDist && Math.abs(m.hb.cY - y) < minDist)
-            {
-                float dist = dist(x, m.hb.cX, y, m.hb.cY);
-                if (dist < minDist)
-                {
-                    closest = m;
-                    minDist = dist;
-                }
-            }
-        }
-
-        if(minDist > 300f) {
-            return null;
-        }
-
-        return closest;
-    }
-
-    public static float dist(float x1, float x2, float y1, float y2)
-    {
-        return (float) Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
-    }
-
-    public static float angle(float x1, float x2, float y1, float y2)
-    {
-        return MathUtils.atan2(y2 - y1, x2 - x1) * 180.0f / MathUtils.PI;
     }
 }
