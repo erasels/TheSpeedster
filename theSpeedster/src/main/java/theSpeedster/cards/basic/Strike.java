@@ -2,9 +2,13 @@ package theSpeedster.cards.basic;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import theSpeedster.actions.utility.BeginSpeedModeAction;
 import theSpeedster.cards.abstracts.SpeedsterCard;
+import theSpeedster.mechanics.speed.SpeedClickEnemyTime;
 import theSpeedster.util.CardInfo;
 import theSpeedster.util.UC;
 
@@ -37,6 +41,10 @@ public class Strike extends SpeedsterCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        UC.doDmg(m,this.damage, MathUtils.randomBoolean() ? AbstractGameAction.AttackEffect.SLASH_VERTICAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        if(!Settings.isDebug) {
+            UC.doDmg(m, this.damage, MathUtils.randomBoolean() ? AbstractGameAction.AttackEffect.SLASH_VERTICAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        } else {
+            UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
+        }
     }
 }
