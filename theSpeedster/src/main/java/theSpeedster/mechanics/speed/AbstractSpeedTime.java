@@ -13,6 +13,8 @@ import theSpeedster.util.UC;
 
 import java.util.function.Consumer;
 
+import static theSpeedster.util.UC.gt;
+
 public abstract class AbstractSpeedTime {
     public static final float BLACKSCREEN_INTENSITY = 0.5f;
     protected Color blackScreenColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
@@ -111,9 +113,5 @@ public abstract class AbstractSpeedTime {
 
     public void hideElements() {
         AbstractDungeon.overlayMenu.hideCombatPanels();
-    }
-
-    public float gt() {
-        return Gdx.graphics.getRawDeltaTime();
     }
 }
