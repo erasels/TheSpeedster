@@ -38,8 +38,8 @@ public abstract class SpeedsterCard extends CustomCard {
     protected boolean upgInnate;
 
     protected boolean upgradeBurst;
-
     protected boolean upgradeRetain;
+    protected boolean upgradeMultiDmg;
 
     public int baseMagicNumber2;
     public int magicNumber2;
@@ -167,8 +167,12 @@ public abstract class SpeedsterCard extends CustomCard {
         }
     }
 
-    public void setMultiDamage(boolean isMultiDamage) {
-        this.isMultiDamage = isMultiDamage;
+    public void setMultiDamage(boolean upgradeMulti) {
+        if(upgradeMulti) {
+            upgradeMultiDmg = true;
+        } else {
+            this.isMultiDamage = true;
+        }
     }
 
     private CardRarity autoRarity() {
@@ -219,6 +223,10 @@ public abstract class SpeedsterCard extends CustomCard {
             ((SpeedsterCard) card).upgExhaust = this.upgExhaust;
             ((SpeedsterCard) card).baseInnate = this.baseInnate;
             ((SpeedsterCard) card).upgInnate = this.upgInnate;
+
+            ((SpeedsterCard) card).upgradeMultiDmg = this.upgradeMultiDmg;
+            ((SpeedsterCard) card).upgradeRetain = this.upgradeRetain;
+            ((SpeedsterCard) card).upgradeBurst = this.upgradeBurst;
 
             ((SpeedsterCard) card).baseMagicNumber2 = this.baseMagicNumber2;
             ((SpeedsterCard) card).magicNumber2 = this.magicNumber2;
@@ -271,6 +279,10 @@ public abstract class SpeedsterCard extends CustomCard {
 
             if(upgradeRetain) {
                 selfRetain = true;
+            }
+
+            if(upgradeMultiDmg) {
+                this.isMultiDamage = true;
             }
 
             this.initializeDescription();
