@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WindyParticleEffect;
-import theSpeedster.util.AlchHelper;
+import theSpeedster.util.UC;
 
 import java.util.function.Consumer;
 
@@ -18,11 +18,10 @@ public class SpeedClickEnemyTime extends AbstractSpeedTime {
     @Override
     protected void effect() {
         if(InputHelper.justClickedLeft) {
-            AbstractMonster m = AlchHelper.getClosestMonster(InputHelper.mX, InputHelper.mY, 300f);
+            AbstractMonster m = UC.getAliveMonsters().stream().filter(mon -> mon.hb.hovered).findAny().orElse(null);//AlchHelper.getClosestMonster(InputHelper.mX, InputHelper.mY, 300f);
             if(m != null)
                 effectAction.accept(m);
         }
-
     }
 
     @Override
