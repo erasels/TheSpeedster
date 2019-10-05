@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theSpeedster.util.UC;
@@ -33,12 +32,16 @@ public abstract class AbstractSpeedTime {
     }
     protected Location renderLocation;
 
-    public AbstractSpeedTime(Location renderLocation, float duration) {
+    public AbstractSpeedTime(Location renderLocation, float duration, float blackscreenIntensity) {
         this.renderLocation = renderLocation;
         this.duration = duration;
-        blackScreenTarget = BLACKSCREEN_INTENSITY;
+        blackScreenTarget = blackscreenIntensity;
         isDone = false;
         hideElements();
+    }
+
+    public AbstractSpeedTime(Location renderLocation, float duration) {
+        this(renderLocation, duration, BLACKSCREEN_INTENSITY);
     }
 
     public void renderController(SpriteBatch sb, Location location) {
@@ -70,7 +73,7 @@ public abstract class AbstractSpeedTime {
 
     public void update() {
         duration -= gt();
-        if(duration<0) {
+        if(duration < 0) {
             close();
             if(blackScreenColor.a == 0.0f) {
                 isDone = true;
