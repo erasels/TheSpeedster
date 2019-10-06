@@ -19,7 +19,7 @@ public abstract class AbstractSpeedTime {
     public static final float BLACKSCREEN_INTENSITY = 0.5f;
     protected Color blackScreenColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
     protected float blackScreenTarget;
-    protected float duration;
+    protected float startingDuration, duration;
     protected Consumer<AbstractMonster> effectAction;
 
     private static Color oscillatingColor = Color.GOLDENROD.cpy();
@@ -36,7 +36,7 @@ public abstract class AbstractSpeedTime {
 
     public AbstractSpeedTime(Location renderLocation, float duration, float blackscreenIntensity) {
         this.renderLocation = renderLocation;
-        this.duration = duration;
+        this.startingDuration = this.duration = duration;
         blackScreenTarget = blackscreenIntensity;
         isDone = false;
         hideElements();
