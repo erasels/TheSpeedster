@@ -43,7 +43,7 @@ public class TimedButton extends ClickableUIElement {
     @Override
     protected void onHover() {
         if(!ordered || order != 0) {
-            tint.a = 0.75f;
+            tint.a = 1f;
         }
     }
 
@@ -62,7 +62,7 @@ public class TimedButton extends ClickableUIElement {
     }
 
     public float getPercentageTimeLeft() {
-        return NumberUtils.min(duration/startingDuration, 0f);
+        return NumberUtils.max(duration/startingDuration, 0f);
     }
 
     public void update(int order) {
@@ -81,7 +81,7 @@ public class TimedButton extends ClickableUIElement {
 
     @Override
     public void render(SpriteBatch sb, Color col) {
-        col.a = getPercentageTimeLeft();
+        col.a = NumberUtils.min(getPercentageTimeLeft() + 0.25f, 1f);
         super.render(sb, col);
 
         if(ordered) {
