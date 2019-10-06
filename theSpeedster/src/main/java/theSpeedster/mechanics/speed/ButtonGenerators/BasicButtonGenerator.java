@@ -8,7 +8,7 @@ public class BasicButtonGenerator extends AbstractButtonGenerator{
 
     public BasicButtonGenerator(float intensity) {
         super(intensity, null);
-        this.clickEffect = tb -> instance.doEffect();
+        this.clickEffect = tb -> instance.triggerEffect();
     }
 
     public void logic() {

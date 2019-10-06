@@ -22,7 +22,7 @@ public class SpeedClickButtonTime extends AbstractSpeedTime {
         buttonGenerator.setButtons(this.buttons);
     }
 
-    public void doEffect() {
+    public void triggerEffect() {
         effectAction.run();
     }
 

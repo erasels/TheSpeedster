@@ -16,7 +16,7 @@ public class SpeedClickEnemyTime extends AbstractSpeedTime {
     }
 
     @Override
-    public void effect() {
+    protected void generalEffect() {
         if(InputHelper.justClickedLeft) {
             AbstractMonster m = UC.getAliveMonsters().stream().filter(mon -> mon.hb.hovered).findAny().orElse(null);//AlchHelper.getClosestMonster(InputHelper.mX, InputHelper.mY, 300f);
             if(m != null)
