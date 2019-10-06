@@ -51,6 +51,7 @@ public abstract class AbstractSpeedTime {
         if(location == renderLocation) {
             renderBlackscreen(sb);
             renderEffects(sb);
+            render(sb);
             renderTimer(sb);
         }
     }
@@ -73,7 +74,15 @@ public abstract class AbstractSpeedTime {
         UC.displayTimer(sb, UC.get2DecString(duration), Settings.HEIGHT - (180.0f * Settings.scale), oscillatingColor);
     }
 
+    protected void render(SpriteBatch sb) {}
+
     public void update() {
+        if(AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+            close();
+            blackScreenColor.a = 0.0f;
+            isDone = true;
+        }
+
         duration -= gt();
         if(duration < 0) {
             close();
@@ -87,7 +96,7 @@ public abstract class AbstractSpeedTime {
         updateBlackScreen();
     }
 
-    protected abstract void effect();
+    public abstract void effect();
 
     protected void updateBlackScreen() {
         if (this.blackScreenColor.a != this.blackScreenTarget)
