@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.RarePotionParticleEffect;
 import org.apache.commons.lang3.math.NumberUtils;
 import theSpeedster.TheSpeedster;
@@ -107,5 +108,9 @@ public class TimedButton extends ClickableUIElement {
             AbstractDungeon.topLevelEffects.add(new RarePotionParticleEffect(x+xOffset, y+yOffset));
             this.sparkleTimer = MathUtils.random(0.2F, 0.4F);
         }
+    }
+
+    public Hitbox getHb() {
+        return this.hitbox;
     }
 }
