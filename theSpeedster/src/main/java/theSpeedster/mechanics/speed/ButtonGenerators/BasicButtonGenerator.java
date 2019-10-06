@@ -5,14 +5,10 @@ import theSpeedster.ui.buttons.TimedButton;
 import theSpeedster.util.UC;
 
 public class BasicButtonGenerator extends AbstractButtonGenerator{
-    private static final float MAX_Y = 250.0F;
-    private static final float MIN_Y = 150.0F;
-    private static final float MIN_X = -350.0F;
-    private static final float MAX_X = 150.0F;
 
     public BasicButtonGenerator(float intensity) {
         super(intensity, null);
-        this.clickEffect = tb -> instance.effect();
+        this.clickEffect = tb -> instance.doEffect();
     }
 
     public void logic() {
