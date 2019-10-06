@@ -1,5 +1,6 @@
 package theSpeedster.mechanics.speed.ButtonGenerators;
 
+import com.megacrit.cardcrawl.core.Settings;
 import theSpeedster.mechanics.speed.AbstractSpeedTime;
 import theSpeedster.ui.buttons.TimedButton;
 
@@ -12,10 +13,10 @@ public abstract class AbstractButtonGenerator {
     protected Consumer<TimedButton> clickEffect;
     protected AbstractSpeedTime instance;
 
-    private static final float MAX_Y = 250.0F;
-    private static final float MIN_Y = 150.0F;
-    private static final float MIN_X = -350.0F;
-    private static final float MAX_X = 150.0F;
+    protected static final float MAX_Y = Settings.HEIGHT - (200f*Settings.scale);
+    protected static final float MIN_Y = (200f*Settings.scale);
+    protected static final float MIN_X = Settings.WIDTH - (300f*Settings.scale);
+    protected static final float MAX_X = (300f*Settings.scale);
 
     public AbstractButtonGenerator(float intensity, Consumer<TimedButton> clickEffect) {
         this.intensity = intensity; //Somewhere between 0.5 and 1
