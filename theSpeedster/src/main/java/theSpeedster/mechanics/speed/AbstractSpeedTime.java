@@ -74,7 +74,7 @@ public abstract class AbstractSpeedTime {
         UC.displayTimer(sb, UC.get2DecString(duration), Settings.HEIGHT - (180.0f * Settings.scale), oscillatingColor);
     }
 
-    protected void render(SpriteBatch sb) {}
+    public void render(SpriteBatch sb) {}
 
     public void update() {
         if(AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
@@ -96,7 +96,8 @@ public abstract class AbstractSpeedTime {
         updateBlackScreen();
     }
 
-    public abstract void effect();
+    public void effect() {}
+    public void doEffect() {}
 
     protected void updateBlackScreen() {
         if (this.blackScreenColor.a != this.blackScreenTarget)
