@@ -7,6 +7,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -21,6 +22,7 @@ import theSpeedster.cards.variables.MagicNumber2;
 import theSpeedster.cards.variables.ShowNumber;
 import theSpeedster.characters.SpeedsterCharacter;
 import theSpeedster.mechanics.speed.AbstractSpeedTime;
+import theSpeedster.mechanics.speed.SpeedClickButtonTime;
 import theSpeedster.util.TextureLoader;
 
 import java.net.URISyntaxException;
@@ -36,7 +38,7 @@ public class TheSpeedster implements
         EditCharactersSubscriber,
         PostInitializeSubscriber,
         PreStartGameSubscriber,
-PostUpdateSubscriber{
+PostUpdateSubscriber, PostRenderSubscriber{
     public static final Logger logger = LogManager.getLogger(TheSpeedster.class.getName());
     private static String modID;
 
@@ -235,5 +237,12 @@ PostUpdateSubscriber{
 
     public static String getModID() { // NO
         return modID;
+    }
+
+    @Override
+    public void receivePostRender(SpriteBatch spriteBatch) {
+        if(speedScreen instanceof SpeedClickButtonTime) {
+            speedScreen.render(spriteBatch);
+        }
     }
 }
