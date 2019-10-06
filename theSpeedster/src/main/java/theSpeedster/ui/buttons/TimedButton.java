@@ -55,7 +55,7 @@ public class TimedButton extends ClickableUIElement {
 
     @Override
     protected void onClick() {
-        UC.doVfx(new ButtonConfirmedEffect(x, y));
+        UC.doVfx(new ButtonConfirmedEffect(x, y, Color.CYAN));
         clickEffect.accept(this);
         isDone = true;
         setClickable(false);
