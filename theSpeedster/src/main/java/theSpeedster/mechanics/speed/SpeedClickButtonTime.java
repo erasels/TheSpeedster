@@ -27,12 +27,13 @@ public class SpeedClickButtonTime extends AbstractSpeedTime {
 
     @Override
     public void update() {
-        buttonGenerator.logic();
         super.update();
+        buttonGenerator.logic();
         int c = 0;
         for(TimedButton b : buttons) {
             b.update(b.ordered?c++:0);
         }
+        buttons.removeIf(b -> b.isDone);
     }
 
     @Override

@@ -23,7 +23,6 @@ public class TimedButton extends ClickableUIElement {
     protected float startingDuration, duration, sparkleTimer;
     protected Consumer<TimedButton> clickEffect;
 
-    //TODO: Make TimedButtonSpeedTime and add an arraylist fo these, iterate over them in the update and check for isDone before removing
     public TimedButton(Texture texture, float x, float y, float timer, Consumer<TimedButton> clickEffect, boolean ordered) {
         super(texture, x, y, texture.getWidth(), texture.getHeight());
         startingDuration = duration = timer;
