@@ -1,5 +1,6 @@
 package theSpeedster.mechanics.speed;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import theSpeedster.mechanics.speed.ButtonGenerators.AbstractButtonGenerator;
 import theSpeedster.ui.buttons.TimedButton;
@@ -7,6 +8,7 @@ import theSpeedster.ui.buttons.TimedButton;
 import java.util.ArrayList;
 
 public class SpeedClickButtonTime extends AbstractSpeedTime {
+    private static Color col = Color.WHITE.cpy();
     protected ArrayList<TimedButton> buttons;
     protected Runnable effectAction;
     protected AbstractButtonGenerator buttonGenerator;
@@ -20,8 +22,7 @@ public class SpeedClickButtonTime extends AbstractSpeedTime {
         buttonGenerator.setButtons(this.buttons);
     }
 
-    @Override
-    public void effect() {
+    public void doEffect() {
         effectAction.run();
     }
 
@@ -30,15 +31,18 @@ public class SpeedClickButtonTime extends AbstractSpeedTime {
         super.update();
         buttonGenerator.logic();
         int c = 0;
-        for(TimedButton b : buttons) {
-            b.update(b.ordered?c++:0);
+        for (TimedButton b : buttons) {
+            b.update(b.ordered ? c++ : 0);
         }
         buttons.removeIf(b -> b.isDone);
     }
 
     @Override
-    protected void render(SpriteBatch sb) {
-        buttons.forEach(b -> b.render(sb));
+    public void render(SpriteBatch sb) {
+        buttons.forEach(b -> {
+            b.render(sb, col);
+            col.a = 1.0f;
+        });
     }
 
     @Override
