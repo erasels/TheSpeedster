@@ -78,9 +78,8 @@ public abstract class AbstractSpeedTime {
 
     public void update() {
         if(AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-            close();
-            blackScreenColor.a = 0.0f;
-            isDone = true;
+            closeInstantly();
+            return;
         }
 
         duration -= gt();
@@ -90,14 +89,14 @@ public abstract class AbstractSpeedTime {
                 isDone = true;
             }
         } else {
-            effect();
+            generalEffect();
             AbstractDungeon.player.hand.group.forEach(c -> c.target_y = -AbstractCard.IMG_HEIGHT);
         }
         updateBlackScreen();
     }
 
-    public void effect() {}
-    public void doEffect() {}
+    protected void generalEffect() {}
+    public void triggerEffect() {}
 
     protected void updateBlackScreen() {
         if (this.blackScreenColor.a != this.blackScreenTarget)
@@ -115,6 +114,12 @@ public abstract class AbstractSpeedTime {
     public void close() {
         AbstractDungeon.overlayMenu.showCombatPanels();
         blackScreenTarget = 0.0f;
+    }
+
+    public void closeInstantly() {
+        AbstractDungeon.overlayMenu.showCombatPanels();
+        blackScreenColor.a = 0.0f;
+        isDone = true;
     }
 
 
