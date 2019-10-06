@@ -47,10 +47,11 @@ public class Strike extends SpeedsterCard {
         } else {
             //UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
             Runnable myRunnable = () -> {
+                System.out.println("Ran");
                 UC.doVfx(new CleaveEffect());
                 UC.doAllDmg(damage, AbstractGameAction.AttackEffect.NONE, false);
             };
-            UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(3.0f, myRunnable, new BasicButtonGenerator(1f))));
+            UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(10.0f, myRunnable, new BasicButtonGenerator(1f))));
         }
     }
 }
