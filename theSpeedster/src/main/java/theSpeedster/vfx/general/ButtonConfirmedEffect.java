@@ -13,25 +13,30 @@ import theSpeedster.util.TextureLoader;
 //Thanks Blank :)
 public class ButtonConfirmedEffect extends AbstractGameEffect {
     private static final float EFFECT_DUR = 0.75f;
-    private float scale;
+    private float scale, scaleMult;
     private Color color;
     private Texture texture;
     private float x, y;
 
-    public ButtonConfirmedEffect(float x, float y) {
+    public ButtonConfirmedEffect(float x, float y, Color color, float duration, float scaleMult) {
         this.scale = Settings.scale;
-        this.color = new Color(1f, 1f, 1f, 1f);
+        this.color = color.cpy();
         this.texture = TextureLoader.getTexture(TheSpeedster.makeUIPath("buttonDoneConfirmation.png"));
         this.x = x;
         this.y = y;
-        this.duration = EFFECT_DUR;
+        this.startingDuration = this.duration = duration;
+        this.scaleMult = scaleMult;
+    }
+
+    public ButtonConfirmedEffect(float x, float y, Color color) {
+        this(x, y, color, EFFECT_DUR, 4);
     }
 
     @Override
     public void update() {
         this.duration -= Gdx.graphics.getDeltaTime();
-        this.scale *= 1.0f + Gdx.graphics.getDeltaTime() * 4f;
-        this.color.a = Interpolation.fade.apply(0.0f, 0.75f, this.duration / EFFECT_DUR);
+        this.scale *= 1.0f + Gdx.graphics.getDeltaTime() * scaleMult;
+        this.color.a = Interpolation.fade.apply(0.0f, 0.75f, this.duration / startingDuration);
         if (this.color.a < 0.0f)
             this.color.a = 0.0f;
         if (this.duration < 0.0f) {
