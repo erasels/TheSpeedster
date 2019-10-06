@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import theSpeedster.actions.utility.BeginSpeedModeAction;
 import theSpeedster.cards.abstracts.SpeedsterCard;
-import theSpeedster.mechanics.speed.ButtonGenerators.BasicButtonGenerator;
-import theSpeedster.mechanics.speed.SpeedClickButtonTime;
+import theSpeedster.mechanics.speed.SpeedHoverZoneTime;
 import theSpeedster.util.CardInfo;
 import theSpeedster.util.UC;
 
@@ -42,7 +41,7 @@ public class Strike extends SpeedsterCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(!Settings.isDebug) {
+        if(Settings.isDebug) {
             UC.doDmg(m, this.damage, MathUtils.randomBoolean() ? AbstractGameAction.AttackEffect.SLASH_VERTICAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         } else {
             //UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
@@ -51,7 +50,8 @@ public class Strike extends SpeedsterCard {
                 UC.doVfx(new CleaveEffect());
                 UC.doAllDmg(damage, AbstractGameAction.AttackEffect.NONE, false);
             };
-            UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(10.0f, myRunnable, new BasicButtonGenerator(1f))));
+            //UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(10.0f, myRunnable, new BasicButtonGenerator(1f))));
+            UC.atb(new BeginSpeedModeAction(new SpeedHoverZoneTime(10.0f, myRunnable, true, 10)));
         }
     }
 }
