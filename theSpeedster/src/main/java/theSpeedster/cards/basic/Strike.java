@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import theSpeedster.actions.utility.BeginSpeedModeAction;
 import theSpeedster.cards.abstracts.SpeedsterCard;
-import theSpeedster.mechanics.speed.SpeedHoverZoneTime;
+import theSpeedster.mechanics.speed.ButtonGenerators.BasicButtonGenerator;
+import theSpeedster.mechanics.speed.SpeedClickButtonTime;
 import theSpeedster.util.CardInfo;
 import theSpeedster.util.UC;
 
@@ -50,8 +51,8 @@ public class Strike extends SpeedsterCard {
                 UC.doVfx(new CleaveEffect());
                 UC.doAllDmg(damage, AbstractGameAction.AttackEffect.NONE, false);
             };
-            //UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(10.0f, myRunnable, new BasicButtonGenerator(1f))));
-            UC.atb(new BeginSpeedModeAction(new SpeedHoverZoneTime(10.0f, myRunnable, true, 10)));
+            UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(10.0f, myRunnable, new BasicButtonGenerator(1f, true))));
+            //UC.atb(new BeginSpeedModeAction(new SpeedHoverZoneTime(10.0f, myRunnable, true, 10)));
         }
     }
 }
