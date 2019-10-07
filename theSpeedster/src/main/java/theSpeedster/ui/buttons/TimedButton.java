@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.RarePotionParticleEffect;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -19,7 +20,7 @@ import java.util.function.Consumer;
 
 public class TimedButton extends ClickableUIElement {
     public boolean isDone, ordered, lockDuration;
-    public int order;
+    public int order, totalOrder;
 
     protected float startingDuration, duration, sparkleTimer;
     protected Consumer<TimedButton> clickEffect;
@@ -28,8 +29,9 @@ public class TimedButton extends ClickableUIElement {
         super(texture, x, y, texture.getWidth(), texture.getHeight());
         startingDuration = duration = timer;
         this.ordered = ordered;
+        totalOrder = -1;
         this.clickEffect = clickEffect;
-        if(ordered) {
+        if (ordered) {
             this.tint = Color.FIREBRICK.cpy();
         } else {
             this.tint = Color.FOREST.cpy();
@@ -43,7 +45,7 @@ public class TimedButton extends ClickableUIElement {
 
     @Override
     protected void onHover() {
-        if(!ordered || order != 0) {
+        if (!ordered || order != 0) {
             tint.a = 1f;
         }
     }
@@ -55,25 +57,27 @@ public class TimedButton extends ClickableUIElement {
 
     @Override
     protected void onClick() {
-        UC.doVfx(new ButtonConfirmedEffect(x, y, Color.CYAN));
-        clickEffect.accept(this);
-        isDone = true;
-        setClickable(false);
-        lockDuration = true;
+        if (!ordered || order == 0) {
+            UC.doVfx(new ButtonConfirmedEffect(x, y, Color.CYAN));
+            clickEffect.accept(this);
+            isDone = true;
+            setClickable(false);
+            lockDuration = true;
+        }
     }
 
     public float getPercentageTimeLeft() {
-        return NumberUtils.max(duration/startingDuration, 0f);
+        return NumberUtils.max(duration / startingDuration, 0f);
     }
 
     public void update(int order) {
         this.order = order;
         super.update();
 
-        if(!lockDuration) {
+        if (!lockDuration) {
             duration -= UC.gt();
         }
-        if(duration < 0 && !lockDuration) {
+        if (duration < 0 && !lockDuration) {
             isDone = true;
             setClickable(false);
             lockDuration = true;
@@ -85,11 +89,11 @@ public class TimedButton extends ClickableUIElement {
         col.a = NumberUtils.min(getPercentageTimeLeft() + 0.25f, 1f);
         super.render(sb, col);
 
-        if(ordered) {
-            //TODO: Make number render on button
+        if (ordered) {
+            FontHelper.renderFontCentered(sb, FontHelper.damageNumberFont, Integer.toString(totalOrder + 1), x + (hb_w / 2f), y + (hb_h / 2f));
         }
 
-        if(!ordered || order != 0) {
+        if (!ordered || order == 0) {
             renderParticles(sb);
         }
     }
@@ -97,20 +101,22 @@ public class TimedButton extends ClickableUIElement {
     public void renderParticles(SpriteBatch sb) {
         this.sparkleTimer -= Gdx.graphics.getDeltaTime();
         if (this.sparkleTimer < 0.0F) {
-            float xOffset = MathUtils.random(0, hb_w/2f);
-            float yOffset = MathUtils.random(0, hb_h/2f);
-            if(MathUtils.randomBoolean()) {
-                xOffset = -xOffset;
-            }
-            if(MathUtils.randomBoolean()) {
-                yOffset = -yOffset;
-            }
-            AbstractDungeon.topLevelEffects.add(new RarePotionParticleEffect(x+xOffset, y+yOffset));
-            this.sparkleTimer = MathUtils.random(0.2F, 0.4F);
+            float xOffset = MathUtils.random(0, hb_w);
+            float yOffset = MathUtils.random(0, hb_h);
+            AbstractDungeon.topLevelEffects.add(new RarePotionParticleEffect(x + xOffset, y + yOffset));
+            this.sparkleTimer = MathUtils.random(0.1F, 0.2F);
         }
     }
 
     public Hitbox getHb() {
         return this.hitbox;
+    }
+
+    public void setTotalOrder(int totalOrder) {
+        if (this.totalOrder > -1 && totalOrder != this.totalOrder) {
+            TheSpeedster.logger.info("Tried to assign new total order to button. From: " + this.totalOrder + " to " + totalOrder);
+            return;
+        }
+        this.totalOrder = totalOrder;
     }
 }
