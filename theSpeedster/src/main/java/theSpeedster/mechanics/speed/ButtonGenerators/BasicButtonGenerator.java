@@ -19,7 +19,7 @@ public class BasicButtonGenerator extends AbstractButtonGenerator{
                 float y = MathUtils.random(MIN_Y, MAX_Y);
                 TimedButton toBeAdded = new TimedButton(x, y, intensity * 2f, clickEffect, ordered);
                 if(buttons.stream().noneMatch(tb -> toBeAdded.getHb().intersects(tb.getHb()))) {
-                    buttons.add(toBeAdded);
+                    addButton(toBeAdded);
                     break;
                 }
             }

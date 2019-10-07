@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 public abstract class AbstractButtonGenerator {
     protected float intensity, timeSince;
     protected boolean ordered;
+    protected int buttonsCreated;
     protected ArrayList<TimedButton> buttons;
     protected Consumer<TimedButton> clickEffect;
     protected AbstractSpeedTime instance;
@@ -38,4 +39,13 @@ public abstract class AbstractButtonGenerator {
     }
 
     public abstract void logic();
+
+    protected void addButton(TimedButton tb) {
+        tb.setTotalOrder(buttonsCreated++);
+        buttons.add(tb);
+    }
+
+    public int getButtonsCreated() {
+        return buttonsCreated;
+    }
 }
